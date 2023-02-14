@@ -2,7 +2,7 @@ import About from "./components/About";
 import Blog from "./components/Blog";
 import Contact from "./components/Contact";
 import Hero from "./components/Hero";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/NavBar";
 import Portofolio from "./components/Portofolio";
 
 function App() {
