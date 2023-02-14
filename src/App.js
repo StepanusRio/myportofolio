@@ -1,18 +1,19 @@
 import About from "./components/About";
-import Home from "./components/Home";
-import Navbar from "./components/NavBar";
-import Portfolio from "./components/Portfolio";
-import SocialLinks from "./components/SocialLinks";
+import Blog from "./components/Blog";
 import Contact from "./components/Contact";
+import Hero from "./components/Hero";
+import Navbar from "./components/Navbar";
+import Portofolio from "./components/Portofolio";
+
 function App() {
   return (
     <div>
-      <Navbar />
-      <Home/>
+      <Navbar/>
+      <Hero/>
       <About/>
-      <Portfolio/>
+      <Blog/>
+      <Portofolio/>
       <Contact/>
-      <SocialLinks/>
     </div>
   );
 }

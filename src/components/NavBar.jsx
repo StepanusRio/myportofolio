@@ -1,57 +1,80 @@
 import React, { useState } from 'react'
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { Divide as Hamburger } from 'hamburger-react'
 import { Link } from 'react-scroll';
+const Navbar = () => {
 
-const NavBar = () => {
-  const [nav, setNav] = useState(false);
-  const links = [
+  const nav = [
     {
       id: 1,
-      link: "home",
-    },
-    {
+      child: 'Home',
+      to: 'home'
+    },{
       id: 2,
-      link: "about",
-    },
-    {
+      child: 'About',
+      to: 'about'
+    }, {
       id: 3,
-      link: "portofolio",
-    },
-    {
+      child: 'Blog',
+      to: 'blog'
+    }, {
       id: 4,
-      link: "contact",
+      child: 'Portofolio',
+      to: 'portofolio'
+    }, {
+      id: 5,
+      child: 'Contact',
+      to: 'contact'
     }
   ]
+
+  const [isOpen, setOpen] = useState(false);
+  window.onscroll = function () {
+    const header = document.querySelector('header');
+    const fixNav = header.offsetTop;
+    if (window.pageYOffset > fixNav) {
+      header.classList.add('navbar-fixed');
+    } else {
+      header.classList.remove('navbar-fixed');
+    }
+  }
   return (
-    <header className='flex justify-between items-center w-full h-20 text-white bg-[#03001C]/30 backdrop-blur-sm fixed px-4 shadow-lg'>
-      <div>
-        <h1 className='font-signature text-5xl ml-2'>Rio</h1>
+    <header className='bg-transparent fixed top-0 left-0 w-full flex items-center z-10'>
+      <div className="container">
+        <div className="flex items-center justify-between relative">
+          <div className="px-4">
+            <h1 className='font-signature font-bold text-4xl text-primary py-6 block'>Rio.Dev</h1>
+          </div>
+          <ul className='hidden lg:flex'>
+            {
+              nav.map(({ id, to, child }) => (
+                <li key={id} className='mx-2'>
+                  <Link className='cursor-pointer text-base text-stroke mx-2 flex hover:text-primary' smooth duration={300} to={to}>{child}</Link>
+                </li>
+              ))
+            }
+          </ul>
+          <div className="flex items-center px-4 lg:hidden">
+            <Hamburger toggled={isOpen} toggle={setOpen} />
+            {
+              isOpen && (
+                <nav className='absolute py-5 bg-white shadow-lg rounded-lg max-w-[250px] w-full right-4 top-24'>
+                  <ul className='block'>
+                    {
+                      nav.map(({ id, to, child }) => (
+                        <li key={id}>
+                          <Link className='cursor-pointer text-base text-stroke py-2 mx-8 flex hover:text-primary' smooth duration={300} to={to}>{child}</Link>
+                        </li>
+                      ))
+                    }
+                  </ul>
+                </nav>
+              )
+            }
+          </div>
+        </div>
       </div>
-      <ul className='hidden md:flex'>
-        {links.map(({ id, link }) => (
-          <li key={id}
-            className='px-4 cursor-pointer capitalize font-medium text-[#5B8FB9] hover:scale-105 duration-300'
-          >
-            <Link to={link} smooth duration={500} >{link}</Link>
-          </li>
-        ))}
-      </ul>
-      <div className='cursor-pointer pr-4 z-10 text-[#5B8FB9] md:hidden' onClick={() => setNav(!nav)}>
-        {nav ? <FaTimes size={30} /> : <FaBars size={30} />}
-      </div>
-      {nav && (
-        <ul className="flex flex-col justify-center items-center absolute top-0 left-0 w-full h-screen bg-gradient-to-b from-[#03001C] to-[#301E67] text-[#5B8FB9]">
-          {links.map(({ id, link }) => (
-            <li key={id}
-              className='px-4 cursor-pointer capitalize py-6 text-4xl hover:scale-105 duration-300'
-            >
-              <Link onClick={()=>setNav(!nav)} to={link} smooth duration={500} >{link}</Link>
-            </li>
-          ))}
-        </ul>
-      )}
     </header>
   )
 }
 
-export default NavBar
+export default Navbar
