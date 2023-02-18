@@ -1,8 +1,12 @@
-import Aos from 'aos'
 import React, { useEffect } from 'react'
+import Aos from 'aos'
 import Blog1 from '../assets/portofolio/domenico-loia-hGV2TfOh0ns-unsplash.jpg'
 
 const Blog = () => {
+  useEffect = (() => {
+    Aos.init();
+    Aos.refresh();
+  }, [])
   const myblog = [
     {
       id: 1,
@@ -10,10 +14,7 @@ const Blog = () => {
       title: 'Welcome to My Blog!',
       describ: 'As a web developer, I am constantly learning, growing, and exploring new technologies and design techniques. My blog is a space where I can share....'
     }
-  ];
-  useEffect = (() => {
-    Aos.init()
-  }, [])
+  ]
   return (
     <section name="blog" className='pt-36 pb-16 bg-slate-100'>
       <div className="container">
