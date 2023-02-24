@@ -32,7 +32,7 @@ const About = () => {
           <BsTwitter size={18} />
         </>
       ),
-      href: 'https://www.twitter.com/stepanusriodefa/',
+      href: 'https://www.twitter.com/libxyz24/',
       style: 'hover:border-primary hover:text-primary'
     }, {
       id: 4,
